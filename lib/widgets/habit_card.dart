@@ -153,7 +153,7 @@ class _HabitCardState extends State<HabitCard> {
           ),
           const SizedBox(height: 40),
           Text(
-            'Racha actual: ${widget.habit.streak} días',
+            'Racha actual: ${widget.habit.streak} días                         Nivel: ${widget.habit.level}',
             style: const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
           ),
           const SizedBox(height: 10),
