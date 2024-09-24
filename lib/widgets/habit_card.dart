@@ -58,10 +58,7 @@ class _HabitCardState extends State<HabitCard> {
     if (lastCompleted != null) {
       int daysDifference = today.difference(lastCompleted).inDays;
 
-      if (daysDifference == 1) {
-        // Si fue completado justo el día anterior, sumamos a la racha
-        widget.habit.streak += 1;
-      } else if (daysDifference > 1) {
+      if (daysDifference > 1) {
         // Si la diferencia es mayor a 1 día, reiniciamos la racha
         widget.habit.streak = 0;
       }
@@ -74,11 +71,16 @@ class _HabitCardState extends State<HabitCard> {
   
 
   // Verifica si es un nuevo día
-  bool _isNewDay(DateTime? ultimaFecha) {
-    if (ultimaFecha == null) return true;
-    DateTime today = DateTime.now();
-    return today.difference(ultimaFecha).inDays >= 1;
-  }
+  bool _isNewDay(DateTime? lastCompletedDate) {
+  if (lastCompletedDate == null) return true;
+  DateTime now = DateTime.now();
+
+  // Comparar solo la parte de la fecha (año, mes, día) ignorando horas
+  return now.year > lastCompletedDate.year ||
+         now.month > lastCompletedDate.month ||
+         now.day > lastCompletedDate.day;
+}
+
 
   // Función para manejar el estado del hábito al marcarlo como completado/desmarcado
   void _toggleComplete() async {
@@ -117,6 +119,7 @@ class _HabitCardState extends State<HabitCard> {
       widget.habit.level = 4;
     } else if (days >= 84) {
       widget.habit.level = 5;
+      maxBar = (days * widget.habit.level) + 100;
     }
   }
 
