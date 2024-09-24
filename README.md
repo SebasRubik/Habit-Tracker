@@ -50,6 +50,7 @@ Esto generará los iconos para Android e iOS automáticamente.
 
 El proyecto sigue una estructura clara y modular:
 
+```
 habit-tracker/
 │
 ├── assets/               # Archivos de recursos como imágenes
@@ -68,7 +69,7 @@ habit-tracker/
 ├── pubspec.yaml          # Configuración de Flutter y dependencias
 │
 └── README.md             # Este archivo
-
+```
 
 
 ## Dependencias principales
