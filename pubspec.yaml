@@ -42,14 +42,13 @@ dependencies:
   shared_preferences: ^2.3.2
   hive: ^2.0.5
   hive_flutter: ^1.1.0
-  flutter_launcher_icons: ^0.14.0
+  icons_launcher: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^1.1.0
   build_runner: ^2.1.5
-  flutter_launcher_icons: "^0.14.0"
   
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -58,14 +57,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
 
-flutter_launcher_icons:
+flutter_icons:
+  image_path: "assets/Logo/HabitTrackerLogo.png"
   android: true
-  image_path_android: "assets/Logo/HabitTrackerLogo.png"
-  adaptative_icon_background: 'assets/Logo/HabitTrackerLogo.png'
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
+  ios: true
 # The following section is specific to Flutter packages.
 
 flutter:
@@ -89,6 +84,7 @@ flutter:
     - assets/icons/icons8-plus1.svg
     - assets/icons/Cancel.svg
     - assets/icons/CheckMark.svg
+    - assets/Remove.png
 
   fonts:
     - family : Poppins

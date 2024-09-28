@@ -39,7 +39,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
@@ -131,7 +131,16 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen> {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      HabitCard(habit: habits[index], habitos: habits,servicios: servicios,),
+                      HabitCard(
+                        habit: habits[index],
+                        habitos: habits,
+                        servicios: servicios,
+                        onHabitDeleted: () {
+                          setState(() {
+                              
+                          });
+                        },
+                      ),
                       const SizedBox(height: 20),
                     ],
                   );

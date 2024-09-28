@@ -6,12 +6,14 @@ class HabitCard extends StatefulWidget {
   final Habit habit;
   final List<Habit> habitos;
   final HabitService servicios;
+  final VoidCallback onHabitDeleted;
 
   const HabitCard({
     Key? key,
     required this.habit,
     required this.habitos,
     required this.servicios,
+    required this.onHabitDeleted,
   }) : super(key: key);
 
   @override
@@ -49,7 +51,7 @@ class _HabitCardState extends State<HabitCard> {
     }
   }
 
-    // Verifica si es un nuevo día y actualiza la racha
+  // Verifica si es un nuevo día y actualiza la racha
   void _checkStreak() {
     DateTime today = DateTime.now();
     DateTime? lastCompleted = widget.habit.lastCompletedDate;
@@ -68,19 +70,16 @@ class _HabitCardState extends State<HabitCard> {
     }
   }
 
-  
-
   // Verifica si es un nuevo día
   bool _isNewDay(DateTime? lastCompletedDate) {
-  if (lastCompletedDate == null) return true;
-  DateTime now = DateTime.now();
+    if (lastCompletedDate == null) return true;
+    DateTime now = DateTime.now();
 
-  // Comparar solo la parte de la fecha (año, mes, día) ignorando horas
-  return now.year > lastCompletedDate.year ||
-         now.month > lastCompletedDate.month ||
-         now.day > lastCompletedDate.day;
-}
-
+    // Comparar solo la parte de la fecha (año, mes, día) ignorando horas
+    return now.year > lastCompletedDate.year ||
+        now.month > lastCompletedDate.month ||
+        now.day > lastCompletedDate.day;
+  }
 
   // Función para manejar el estado del hábito al marcarlo como completado/desmarcado
   void _toggleComplete() async {
@@ -143,13 +142,40 @@ class _HabitCardState extends State<HabitCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.habit.name,
-            style: const TextStyle(
-              fontSize: 30,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Distribuye el texto a la izquierda y el botón a la derecha
+            children: [
+              Text(
+                widget.habit.name,
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                width: 40,
+                height: 40,
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.habitos.removeWhere(
+                          (habito) => habito.name == widget.habit.name);
+                    });
+
+                    // Guardar los cambios
+                    widget.servicios.guardarHabitos(widget.habitos);
+
+                    // Llamar al callback para notificar que un hábito ha sido eliminado
+                    widget.onHabitDeleted();
+                  },
+                  icon: Image.asset(
+                      "assets/Remove.png"), // Usa `Image.asset` para recursos locales
+                  iconSize: 35, // Ajusta el tamaño de la imagen
+                ),
+              )
+            ],
           ),
           const SizedBox(height: 40),
           Text(
