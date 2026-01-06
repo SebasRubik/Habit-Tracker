@@ -24,17 +24,17 @@
 
 1. Clona el repositorio a tu máquina local:
    
-   git clone https://github.com/tuusuario/habit-tracker.git
+   git clone https://github.com/SebasRubik/habit-tracker.git
 
-2. Navega a la carpeta del proyecto:
+3. Navega a la carpeta del proyecto:
 
    cd habit-tracker
 
-3. Instala las dependencias de Flutter:
+4. Instala las dependencias de Flutter:
 
    flutter pub get
 
-4. Conéctate a un dispositivo o emulador y ejecuta la aplicación:
+5. Conéctate a un dispositivo o emulador y ejecuta la aplicación:
 
    flutter run
 
@@ -86,3 +86,4 @@ Si quieres contribuir a este proyecto, sigue estos pasos:
 3. Realiza tus cambios y haz commit (`git commit -m 'Agrega nueva funcionalidad'`).
 4. Sube tu rama (`git push origin feature/nueva-funcionalidad`).
 5. Abre un Pull Request.
+
